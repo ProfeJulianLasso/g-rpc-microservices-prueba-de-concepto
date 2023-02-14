@@ -5,18 +5,18 @@ import { HeroById } from './hero-by-id.interface';
 import { Hero } from './hero.interface';
 
 @Controller()
-export class Micro1Controller {
-  @GrpcMethod('HeroesService1', 'FindOne')
-  findOne(
+export class Micro2Controller {
+  @GrpcMethod('HeroesService2', 'FindTwo')
+  findTwo(
     data: HeroById,
     metadata: Metadata,
     call: ServerUnaryCall<any, any>,
   ): Hero | undefined {
     const items = [
-      { id: 1, name: 'John1' },
+      { id: 1, name: 'John2' },
       { id: 2, name: 'Doe' },
     ];
-    console.log('micro1');
+    console.log('micro2');
     return items.find(({ id }) => id === data.id);
   }
 }
