@@ -1,0 +1,113 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "start Contexts dev",
+      "dependsOn": [
+        "Micro1",
+        "Micro2",
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false,
+      }
+    },
+    {
+      "label": "start Micro1 dev",
+      "dependsOn": [
+        "Main",
+        "Micro2",
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false,
+      }
+    },
+    {
+      "label": "start Micro2 dev",
+      "dependsOn": [
+        "Main",
+        "Micro1",
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false,
+      }
+    },
+    {
+      "label": "stop Contexts dev",
+      "type": "shell",
+      "command": "echo ${input:stopContexts}",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "dedicated",
+        "close": true,
+      },
+    },
+    {
+      "label": "Main",
+      "detail": "nest start --watch",
+      "type": "shell",
+      "command": "pnpm start:dev",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": ".",
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "webpack",
+          "endsPattern": "successfully"
+        }
+      }
+    },
+    {
+      "label": "Micro1",
+      "detail": "nest start micro1 --watch",
+      "type": "shell",
+      "command": "pnpm start-micro1:dev",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": ".",
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "webpack",
+          "endsPattern": "successfully"
+        }
+      }
+    },
+    {
+      "label": "Micro2",
+      "detail": "nest start micro2 --watch",
+      "type": "shell",
+      "command": "pnpm start-micro2:dev",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": ".",
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "webpack",
+          "endsPattern": "successfully"
+        }
+      }
+    },
+  ],
+  "inputs": [
+    {
+      "id": "stopContexts",
+      "type": "command",
+      "command": "workbench.action.tasks.terminate",
+      "args": "terminateAll",
+    },
+  ]
+}
