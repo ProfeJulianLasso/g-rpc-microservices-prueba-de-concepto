@@ -1,8 +1,8 @@
 import { Metadata, ServerUnaryCall } from '@grpc/grpc-js';
 import { Controller } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
-import { HeroById } from './hero-by-id.interface';
-import { Hero } from './hero.interface';
+import { HeroById } from '../interfaces/hero-by-id.interface';
+import { Hero } from '../interfaces/hero.interface';
 
 @Controller()
 export class Micro2Controller {

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { Micro1Controller } from './micro1.controller';
+import { Micro1Controller } from './controllers/micro1.controller';
 
 @Module({
   imports: [],
