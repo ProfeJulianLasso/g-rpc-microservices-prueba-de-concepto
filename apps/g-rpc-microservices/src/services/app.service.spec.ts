@@ -42,7 +42,7 @@ describe('AppService', () => {
       const expected = { id: 1, name: 'Superman' } as Hero;
       const findOneSpy = jest.fn().mockImplementation(() => from([hero]));
       jest.spyOn(client1, 'getService').mockImplementation(() => ({
-        findOne: findOneSpy,
+        Micro1BuscarHeroe: findOneSpy,
       }));
 
       // Act
@@ -50,10 +50,12 @@ describe('AppService', () => {
       const result = appService.getHero1(id);
 
       // Assert
-      result.subscribe((response) => {
-        expect(response).toEqual(expected);
-        expect(findOneSpy).toHaveBeenCalledWith(idExpected);
-        done();
+      result.subscribe({
+        next: (response) => {
+          expect(response).toEqual(expected);
+          expect(findOneSpy).toHaveBeenCalledWith(idExpected);
+          done();
+        },
       });
     });
   });
@@ -67,7 +69,7 @@ describe('AppService', () => {
       const expected = { id: 2, name: 'Batman' } as Hero;
       const findTwoSpy = jest.fn().mockImplementation(() => from([hero]));
       jest.spyOn(client2, 'getService').mockImplementation(() => ({
-        findTwo: findTwoSpy,
+        Micro2BuscarHeroe: findTwoSpy,
       }));
 
       // Act

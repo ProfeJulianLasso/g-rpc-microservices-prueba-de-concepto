@@ -3,12 +3,27 @@ syntax = "proto3";
 package hero2;
 
 service HeroesService2 {
-  rpc FindTwo(HeroById) returns (Hero) {}
+  rpc Micro2BuscarHeroe(HeroById) returns (Hero) {}
+  rpc Ejemplo1(stream HeroName) returns (stream Hero);
+  rpc Ejemplo2(Empty) returns (stream Heros);
+  rpc FindAllWithoutStreamParam(stream Empty) returns (stream Heros);
 }
 
+message Empty {}
+
+message HeroName { string name = 1; }
+
 message HeroById { int32 id = 1; }
+
+message MyHero {
+  int32 id = 1;
+  string name = 2;
+}
 
 message Hero {
   int32 id = 1;
   string name = 2;
+  repeated MyHero data = 3;
 }
+
+message Heros { repeated Hero heros = 1; }

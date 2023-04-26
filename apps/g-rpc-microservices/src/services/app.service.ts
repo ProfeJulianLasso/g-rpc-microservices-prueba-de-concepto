@@ -2,8 +2,10 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 import { HeroById } from '../interfaces/hero-by-id.interface';
+import { HeroName } from '../interfaces/hero-name.interface';
 import { HeroesService } from '../interfaces/hero-service.interface';
 import { Hero } from '../interfaces/hero.interface';
+import { Heros } from '../interfaces/heros.interface';
 
 @Injectable()
 export class AppService implements OnModuleInit {
@@ -23,10 +25,18 @@ export class AppService implements OnModuleInit {
   }
 
   getHero1(id: HeroById): Observable<Hero> {
-    return this.heroes1Service.findOne(id);
+    return this.heroes1Service.Micro1BuscarHeroe(id);
   }
 
   getHero2(id: HeroById): Observable<Hero> {
-    return this.heroes2Service.findTwo(id);
+    return this.heroes2Service.Micro2BuscarHeroe(id);
+  }
+
+  getHero3(hero: Observable<HeroName>): Observable<Hero> {
+    return this.heroes2Service.Ejemplo1(hero);
+  }
+
+  getHero4(): Observable<Heros> {
+    return this.heroes2Service.Ejemplo2({});
   }
 }

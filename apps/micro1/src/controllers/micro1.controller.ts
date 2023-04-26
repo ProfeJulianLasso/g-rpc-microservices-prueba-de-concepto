@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Metadata, ServerUnaryCall } from '@grpc/grpc-js';
 import { Controller } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
@@ -6,8 +7,8 @@ import { Hero } from '../interfaces/hero.interface';
 
 @Controller()
 export class Micro1Controller {
-  @GrpcMethod('HeroesService1', 'FindOne')
-  findOne(
+  @GrpcMethod('HeroesService1', 'Micro1BuscarHeroe')
+  micro1BuscarHeroe(
     data: HeroById,
     metadata: Metadata,
     call: ServerUnaryCall<any, any>,
@@ -16,7 +17,6 @@ export class Micro1Controller {
       { id: 1, name: 'John1' },
       { id: 2, name: 'Doe' },
     ];
-    console.log('micro1');
     return items.find(({ id }) => id === data.id);
   }
 }
